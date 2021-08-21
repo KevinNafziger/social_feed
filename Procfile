@@ -1,1 +1,2 @@
-web: bundle exec rails server -p $PORT
+ bundle exec rails server -p $PORT
+ heroku ps:scale web=1
