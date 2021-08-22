@@ -1,0 +1,11 @@
+<h2><%= feed_type %></h2>
+<ul>
+<% items.each do |item| %>
+  <div class="column-19 w-col w-col-10">
+    <li style="font-size:22px;" class="list-item-2">
+      <%= item.to_s.gsub(/("|\[|\])/, "").gsub(/{/, "").gsub(/}/, "") %>
+   </li>
+   <br><br>
+  </div>
+<% end %>
+</ul>

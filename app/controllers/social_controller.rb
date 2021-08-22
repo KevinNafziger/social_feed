@@ -5,23 +5,28 @@ require 'json'
 class SocialController < ApplicationController
   def index
 
-  	@fb_is_hash = true
-  	@tw_is_hash = true
+  	@fb_as_json= true
+	@tw_as_json = true
+    @fbObj = []
+    @twObj = []
+    @fbStr =""
+    @twStr= ""
+	
     
     response = HTTParty.get('https://takehome.io/facebook' )
     begin
-   	 @fbs = JSON.parse(response.body)
-   	 	rescue JSON::ParserError => e
-   	 		@fbs = response.to_s
-   	 		@fb_is_hash = false
+   	  @fbObj = JSON.parse(response.body)
+   	    rescue JSON::ParserError => e
+   	 	  @fbStr = response.to_s
+   	 	  @fb_as_json = false
    	 end
 
    	 response = HTTParty.get('https://takehome.io/twitter' )
    	 begin
- 		@twitters = JSON.parse(response.body)
-   	 		rescue JSON::ParserError => e
-   	 		@twitters = response.to_s
-   	 		@tw_is_hash = false
+ 	   @twObj = JSON.parse(response.body)
+   	 	 rescue JSON::ParserError => e
+   	 	   @twStr = response.to_s
+   	 	   @tw_as_json = false
 	 end	    
  
   end
